@@ -20,7 +20,9 @@ subprojects {
 	spotless {
 		kotlin {
 			target("src/**/*.kt")
-			ktlint()
+			ktlint().editorConfigOverride([
+				'ktlint_standard_filename': 'disabled',
+			])
 		}
 	}
 

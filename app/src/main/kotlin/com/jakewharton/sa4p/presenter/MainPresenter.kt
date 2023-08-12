@@ -23,7 +23,7 @@ fun MainPresenter(
 	urlsQueries: UrlsQueries,
 	authQueries: AuthQueries,
 	syncManager: SyncManager,
-) : MainModel {
+): MainModel {
 	var isLoggingOut by remember {
 		mutableStateOf(false)
 	}
@@ -72,7 +72,7 @@ fun MainPresenter(
 		},
 		syncRunning = syncState != State.Idle,
 		pendingUrls = pending,
-		onSyncNow = syncManager::sync
+		onSyncNow = syncManager::sync,
 	)
 }
 

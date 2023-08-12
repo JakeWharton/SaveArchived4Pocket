@@ -6,7 +6,7 @@ sqldelight = "2.0.0"
 okhttp = "4.11.0"
 
 [libraries]
-androidGradlePlugin = "com.android.tools.build:gradle:8.0.2"
+androidGradlePlugin = "com.android.tools.build:gradle:8.1.0"
 
 androidx-activity-compose = "androidx.activity:activity-compose:1.7.2"
 # This isn't strictly used, but allows Renovate to see us using the Compose Compiler artifact

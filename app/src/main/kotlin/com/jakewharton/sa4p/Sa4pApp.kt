@@ -52,7 +52,7 @@ class Sa4pApp : Application() {
 				if (BuildConfig.DEBUG) {
 					addNetworkInterceptor(
 						HttpLoggingInterceptor { Log.d("HTTP", it) }
-							.apply { setLevel(BASIC) }
+							.apply { setLevel(BASIC) },
 					)
 				}
 			}

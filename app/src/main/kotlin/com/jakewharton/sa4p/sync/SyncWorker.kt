@@ -8,7 +8,7 @@ import kotlinx.coroutines.CancellationException
 
 class SyncWorker(
 	appContext: Context,
-	workerParams: WorkerParameters
+	workerParams: WorkerParameters,
 ) : CoroutineWorker(appContext, workerParams) {
 	override suspend fun doWork(): Result {
 		val sync = (applicationContext as Sa4pApp).sync

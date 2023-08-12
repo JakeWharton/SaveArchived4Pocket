@@ -27,3 +27,15 @@ jobs:
           gradle-home-cache-cleanup: true
 
       - run: ./gradlew build
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: sa4p-debug.apk
+          path: app/build/outputs/apk/debug/sa4p-debug.apk
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: sa4p-release-unsigned.apk
+          path: app/build/outputs/apk/release/sa4p-release-unsigned.apk
+          if-no-files-found: error

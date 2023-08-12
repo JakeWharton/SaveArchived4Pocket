@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'org.jetbrains.kotlin.plugin.serialization'
+apply plugin: 'app.cash.sqldelight'
+
+android {
+	namespace 'com.jakewharton.sa4p'
+
+	buildFeatures {
+		buildConfig = true
+		compose = true
+	}
+
+	defaultConfig {
+		targetSdk 34
+	}
+
+	buildTypes {
+		debug {
+			applicationIdSuffix = ".debug"
+		}
+	}
+}
+
+dependencies {
+	implementation libs.retrofit.core
+	implementation libs.retrofit.kotlinxSerializationConverter
+	implementation libs.okhttp.core
+	implementation libs.okhttp.logging
+	implementation libs.kotlinx.datetime
+	implementation libs.kotlinx.serialization.core
+	implementation libs.kotlinx.serialization.json
+	implementation libs.androidx.compose.material
+	implementation libs.androidx.compose.ui
+	implementation libs.androidx.compose.ui.tooling.preview
+	implementation libs.androidx.activity.compose
+	implementation libs.androidx.work.runtime
+	implementation libs.sqldelight.android
+	implementation libs.sqldelight.coroutines
+	debugImplementation libs.androidx.compose.ui.tooling
+}
+
+sqldelight {
+	databases {
+		Database {
+			packageName = "com.jakewharton.sa4p.db"
+		}
+	}
+}

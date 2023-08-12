@@ -1,0 +1,35 @@
+import kotlin.Boolean;
+import kotlinx.datetime.Instant;
+
+CREATE TABLE urls (
+	id INTEGER AS VALUE PRIMARY KEY NOT NULL,
+	url TEXT NOT NULL,
+	added INTEGER AS Instant NOT NULL,
+	pocket_id TEXT,
+	archived INTEGER AS Boolean
+);
+
+add:
+INSERT INTO urls (url, added)
+VALUES (?, ?)
+;
+
+update_pocket_id:
+UPDATE urls
+SET pocket_id = ?2
+WHERE id = ?1
+;
+
+update_archived:
+UPDATE urls
+SET archived = 1
+WHERE id = ?
+;
+
+pending:
+SELECT id, url, added
+FROM urls
+WHERE pocket_id IS NULL
+   OR archived = 0
+ORDER BY added DESC
+;

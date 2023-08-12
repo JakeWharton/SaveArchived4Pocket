@@ -1,0 +1,52 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+
+buildscript {
+	repositories {
+		mavenCentral()
+		google()
+	}
+	dependencies {
+		classpath(libs.kotlin.gradlePlugin)
+		classpath(libs.kotlin.serializationPlugin)
+		classpath(libs.androidGradlePlugin)
+		classpath(libs.spotlessPlugin)
+		classpath(libs.sqldelight.plugin)
+	}
+}
+
+subprojects {
+	apply plugin: 'com.diffplug.spotless'
+	spotless {
+		kotlin {
+			target("src/**/*.kt")
+			ktlint()
+		}
+	}
+
+	tasks.withType(KotlinJvmCompile).configureEach {
+		compilerOptions {
+			jvmTarget.set(JvmTarget.JVM_11)
+			freeCompilerArgs.addAll([
+				'-progressive', // https://kotlinlang.org/docs/whatsnew13.html#progressive-mode
+				'-Xjvm-default=all',
+			])
+		}
+	}
+
+	plugins.withId('com.android.base') {
+		android {
+			defaultConfig {
+				minSdk 34
+				compileSdk 34
+			}
+			compileOptions {
+				sourceCompatibility JavaVersion.VERSION_11
+				targetCompatibility JavaVersion.VERSION_11
+			}
+			composeOptions {
+				kotlinCompilerExtensionVersion = libs.androidx.compose.compiler.get().version
+			}
+		}
+	}
+}

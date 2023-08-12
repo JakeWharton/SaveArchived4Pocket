@@ -1,0 +1,23 @@
+CREATE TABLE auth (
+	consumer_key TEXT NOT NULL,
+	access_token TEXT NOT NULL,
+	username TEXT NOT NULL
+);
+
+update {
+	DELETE FROM auth
+	;
+
+	INSERT INTO auth(consumer_key, access_token, username)
+	VALUES (?, ?, ?)
+	;
+}
+
+credentials:
+SELECT *
+FROM auth
+;
+
+clear_credentials:
+DELETE FROM auth
+;

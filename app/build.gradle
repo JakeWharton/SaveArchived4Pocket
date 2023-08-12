@@ -17,15 +17,39 @@ android {
 		targetSdk 34
 	}
 
+	signingConfigs {
+		debug {
+			storeFile file('debug.keystore')
+			storePassword 'sa1234p'
+			keyAlias 'sa4p'
+			keyPassword 'sa1234p'
+		}
+	}
+
 	buildTypes {
 		debug {
-			applicationIdSuffix = ".debug"
+			applicationIdSuffix = '.debug'
+			versionNameSuffix = 'debug'
+			signingConfig signingConfigs.debug
+		}
+		release {
+			if (file('upload.keystore').exists()) {
+				// TODO signingConfig signingConfigs.upload
+			} else {
+				signingConfig signingConfigs.debug
+				versionNameSuffix = 'release-debug'
+			}
+
+			minifyEnabled true
+			shrinkResources true
+			proguardFiles(file('shrinker-rules.pro'))
 		}
 	}
 
 	packagingOptions {
 		exclude 'okhttp3/internal/publicsuffix/NOTICE'
 		exclude 'kotlin/**'
+		exclude 'kotlin-tooling-metadata.json'
 		exclude 'DebugProbesKt.bin'
 		exclude 'META-INF/*.kotlin_module'
 		exclude 'META-INF/*.version'

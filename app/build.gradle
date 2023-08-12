@@ -21,6 +21,16 @@ android {
 		}
 	}
 
+	packagingOptions {
+		exclude 'okhttp3/internal/publicsuffix/NOTICE'
+		exclude 'kotlin/**'
+		exclude 'DebugProbesKt.bin'
+		exclude 'META-INF/*.kotlin_module'
+		exclude 'META-INF/*.version'
+		// TODO This does not actually work https://issuetracker.google.com/issues/295509075.
+		exclude 'META-INF/com/android/build/gradle/**'
+	}
+
 	lint {
 		// // We run a full lint analysis as build part in CI, so skip vital checks for assemble task.
 		checkReleaseBuilds = false

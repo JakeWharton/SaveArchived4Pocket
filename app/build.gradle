@@ -3,6 +3,8 @@ apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'org.jetbrains.kotlin.plugin.serialization'
 apply plugin: 'app.cash.sqldelight'
 
+archivesBaseName = 'sa4p'
+
 android {
 	namespace 'com.jakewharton.sa4p'
 

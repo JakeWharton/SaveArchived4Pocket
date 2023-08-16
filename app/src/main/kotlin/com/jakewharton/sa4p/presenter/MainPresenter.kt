@@ -15,6 +15,7 @@ import com.jakewharton.sa4p.db.Pending
 import com.jakewharton.sa4p.db.UrlsQueries
 import com.jakewharton.sa4p.sync.SyncManager
 import com.jakewharton.sa4p.sync.SyncManager.State
+import com.jakewharton.sa4p.sync.SyncManager.Tokens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -28,11 +29,12 @@ fun MainPresenter(
 		mutableStateOf(false)
 	}
 
-	val credentials by remember {
+	val _credentials by remember {
 		authQueries.credentials()
 			.asFlow()
 			.mapToOneOrNull(Dispatchers.IO)
 	}.collectAsState(initial = null)
+	val credentials = _credentials
 
 	val pending by remember {
 		urlsQueries.pending()
@@ -53,6 +55,7 @@ fun MainPresenter(
 				username = "JakeWharton",
 				onSignOut = {
 					isLoggingOut = true
+					// TODO cancel work manager
 					scope.launch(Dispatchers.IO) {
 						try {
 							authQueries.clear_credentials()
@@ -61,6 +64,9 @@ fun MainPresenter(
 							isLoggingOut = false
 						}
 					}
+				},
+				onSyncNow = {
+					syncManager.sync(Tokens(credentials.consumer_key, credentials.access_token))
 				},
 			)
 		} else {
@@ -72,7 +78,6 @@ fun MainPresenter(
 		},
 		syncRunning = syncState != State.Idle,
 		pendingUrls = pending,
-		onSyncNow = syncManager::sync,
 	)
 }
 
@@ -80,8 +85,6 @@ data class MainModel(
 	val authentication: Authentication,
 	val pendingUrls: List<Pending>,
 	val syncRunning: Boolean,
-	/** Request to perform a sync, if one is not already running. */
-	val onSyncNow: () -> Unit,
 )
 
 sealed interface Authentication
@@ -94,4 +97,6 @@ data class Authenticated(
 	val isLoggingOut: Boolean,
 	val username: String,
 	val onSignOut: () -> Unit,
+	/** Request to perform a sync, if one is not already running. */
+	val onSyncNow: () -> Unit,
 ) : Authentication

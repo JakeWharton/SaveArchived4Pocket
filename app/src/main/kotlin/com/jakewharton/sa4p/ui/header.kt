@@ -54,7 +54,6 @@ private fun PreviewUnauthenticated() {
 			),
 			pendingUrls = emptyList(),
 			syncRunning = false,
-			onSyncNow = {},
 		),
 	)
 }
@@ -68,10 +67,10 @@ private fun PreviewAuthenticated() {
 				isLoggingOut = false,
 				username = "Shrek",
 				onSignOut = {},
+				onSyncNow = {},
 			),
 			pendingUrls = emptyList(),
 			syncRunning = false,
-			onSyncNow = {},
 		),
 	)
 }

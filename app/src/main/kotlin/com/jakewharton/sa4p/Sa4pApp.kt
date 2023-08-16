@@ -21,7 +21,7 @@ import retrofit2.Retrofit
 import retrofit2.create
 
 class Sa4pApp : Application() {
-	private val scope = MainScope()
+	val scope = MainScope()
 
 	lateinit var db: Database
 		private set

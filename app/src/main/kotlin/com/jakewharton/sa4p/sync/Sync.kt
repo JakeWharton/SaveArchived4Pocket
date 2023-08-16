@@ -39,14 +39,19 @@ class SyncManager(
 		}
 	}
 
-	fun sync(): Job {
+	data class Tokens(
+		val consumerKey: String,
+		val accessToken: String,
+	)
+
+	fun sync(tokens: Tokens): Job {
 		while (true) {
 			// If there's an active Job, grab and return it.
 			activeJob.value?.let { return it }
 
 			// Create a new job and attempt to install it as the active one.
 			val newJob = scope.launch(start = LAZY) {
-				performSync()
+				performSync(tokens)
 			}
 			if (activeJob.compareAndSet(null, newJob)) {
 				newJob.start()
@@ -58,15 +63,12 @@ class SyncManager(
 		}
 	}
 
-	private suspend fun performSync() {
+	private suspend fun performSync(tokens: Tokens) {
+		val (consumerKey, accessToken) = tokens
+
 		val pendingList = withContext(ioContext) {
 			urlsQueries.pending().executeAsList()
 		}
-
-		// TODO should these be args?
-		// TODO what happens if you log out during sync? cancel the scope?
-		val consumerKey = TODO()
-		val accessToken = TODO()
 
 		for (pending in pendingList) {
 			// TODO try/catch stuff

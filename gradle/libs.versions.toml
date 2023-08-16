@@ -11,11 +11,12 @@ androidGradlePlugin = "com.android.tools.build:gradle:8.1.0"
 androidx-activity-compose = "androidx.activity:activity-compose:1.7.2"
 # This isn't strictly used, but allows Renovate to see us using the Compose Compiler artifact
 androidx-compose-compiler = "androidx.compose.compiler:compiler:1.5.1"
-androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
+androidx-compose-material3 = "androidx.compose.material3:material3:1.1.1"
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-compose" }
 androidx-work-runtime = "androidx.work:work-runtime-ktx:2.8.1"
+
 
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-serializationPlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }

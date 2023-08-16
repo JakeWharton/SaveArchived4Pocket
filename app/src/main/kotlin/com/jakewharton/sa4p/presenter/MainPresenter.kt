@@ -72,6 +72,7 @@ fun MainPresenter(
 		} else {
 			Unauthenticated(
 				onStartAuthentication = {
+					authQueries.update("sup", "sup", "JakeWharton")
 					// TODO launch oauth https://getpocket.com/developer/docs/authentication
 				},
 			)

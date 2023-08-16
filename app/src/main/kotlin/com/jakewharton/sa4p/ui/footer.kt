@@ -1,5 +1,6 @@
 package com.jakewharton.sa4p.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons.Filled
@@ -42,6 +43,9 @@ fun BottomBar(model: MainModel) {
 						TextButton(onClick = { confirm = false }) {
 							Icon(Filled.Clear, contentDescription = "")
 							Text(modifier = Modifier.padding(start = 4.dp), text = "Cancel")
+						}
+						BackHandler {
+							confirm = false
 						}
 					} else {
 						TextButton(onClick = { confirm = true }) {

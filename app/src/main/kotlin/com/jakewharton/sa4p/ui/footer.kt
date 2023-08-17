@@ -1,6 +1,11 @@
 package com.jakewharton.sa4p.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons.Filled
@@ -22,6 +27,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import com.jakewharton.sa4p.presenter.Authenticated
 import com.jakewharton.sa4p.presenter.MainModel
@@ -65,14 +71,32 @@ fun BottomBar(model: MainModel) {
 		},
 		floatingActionButton = {
 			if (model.authentication is Authenticated) {
-				// TODO disable if synchronizing
 				FloatingActionButton(
-					onClick = { model.authentication.onSyncNow() },
+					onClick = {
+						if (!model.syncRunning) {
+							model.authentication.onSyncNow()
+						}
+					},
 					containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
 					elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(),
 				) {
-					// TODO rotate if synchronizing
-					Icon(Filled.Refresh, "Synchronize URLs to Pocket")
+					val rotation = if (model.syncRunning) {
+						val infiniteTransition = rememberInfiniteTransition()
+						infiniteTransition.animateFloat(
+							initialValue = 0F,
+							targetValue = 360F,
+							animationSpec = infiniteRepeatable(
+								animation = tween(1000, easing = LinearEasing),
+							),
+						).value
+					} else {
+						0f
+					}
+					Icon(
+						modifier = Modifier.rotate(rotation),
+						imageVector = Filled.Refresh,
+						contentDescription = "Synchronize URLs to Pocket",
+					)
 				}
 			}
 		},

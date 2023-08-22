@@ -6,6 +6,8 @@ sqldelight = "2.0.0"
 okhttp = "4.11.0"
 
 [libraries]
+accompanist-systemUiController = "com.google.accompanist:accompanist-systemuicontroller:0.30.1"
+
 androidGradlePlugin = "com.android.tools.build:gradle:8.1.0"
 
 androidx-activity-compose = "androidx.activity:activity-compose:1.7.2"
@@ -25,6 +27,8 @@ kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+material = { module = "com.google.android.material:material", version = "1.7.0" }
 
 retrofit-core = "com.squareup.retrofit2:retrofit:2.9.0"
 retrofit-kotlinxSerializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"

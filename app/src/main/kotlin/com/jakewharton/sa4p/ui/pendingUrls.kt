@@ -1,8 +1,7 @@
 package com.jakewharton.sa4p.ui
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
@@ -19,19 +18,19 @@ fun PendingUrls(urls: List<Pending>) {
 		ListItem(headlineContent = { Text("No URLs to sync!") })
 	} else {
 		LazyColumn {
-			items(urls) { pending ->
-				Column {
+			itemsIndexed(urls) { index, pending ->
+				if (index > 0) {
 					Divider()
-					ListItem(
-						headlineContent = {
-							Text(
-								text = pending.url,
-								maxLines = 1,
-								overflow = TextOverflow.Ellipsis,
-							)
-						},
-					)
 				}
+				ListItem(
+					headlineContent = {
+						Text(
+							text = pending.url,
+							maxLines = 1,
+							overflow = TextOverflow.Ellipsis,
+						)
+					},
+				)
 			}
 		}
 	}

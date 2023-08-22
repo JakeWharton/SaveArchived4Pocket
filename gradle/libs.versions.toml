@@ -6,7 +6,7 @@ sqldelight = "2.0.0"
 okhttp = "4.11.0"
 
 [libraries]
-accompanist-systemUiController = "com.google.accompanist:accompanist-systemuicontroller:0.30.1"
+accompanist-systemUiController = "com.google.accompanist:accompanist-systemuicontroller:0.32.0"
 
 androidGradlePlugin = "com.android.tools.build:gradle:8.1.0"
 

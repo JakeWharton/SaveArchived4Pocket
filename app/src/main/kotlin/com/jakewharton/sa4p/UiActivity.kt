@@ -3,12 +3,14 @@ package com.jakewharton.sa4p
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.core.view.WindowCompat
 import com.jakewharton.sa4p.presenter.MainPresenter
 import com.jakewharton.sa4p.ui.MainUi
 
 class UiActivity : ComponentActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		WindowCompat.setDecorFitsSystemWindows(window, false)
 
 		val app = application as Sa4pApp
 		val authQueries = app.db.authQueries

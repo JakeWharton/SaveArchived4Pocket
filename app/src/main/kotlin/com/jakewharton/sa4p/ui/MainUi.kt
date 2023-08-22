@@ -49,7 +49,7 @@ fun MainUi(model: MainModel) {
 			},
 		) {
 			Box(modifier = Modifier.padding(it)) {
-				PendingUrls(model)
+				PendingUrls(model.pendingUrls)
 			}
 		}
 	}

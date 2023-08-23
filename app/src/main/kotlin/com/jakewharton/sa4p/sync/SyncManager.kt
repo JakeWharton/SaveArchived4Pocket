@@ -1,5 +1,6 @@
 package com.jakewharton.sa4p.sync
 
+import com.jakewharton.sa4p.BuildConfig
 import com.jakewharton.sa4p.db.UrlsQueries
 import com.jakewharton.sa4p.net.AddRequest
 import com.jakewharton.sa4p.net.PocketApi
@@ -39,19 +40,18 @@ class SyncManager(
 		}
 	}
 
-	data class Tokens(
-		val consumerKey: String,
-		val accessToken: String,
-	)
-
-	fun sync(tokens: Tokens): Job {
+	fun sync(accessToken: String): Job {
 		while (true) {
 			// If there's an active Job, grab and return it.
 			activeJob.value?.let { return it }
 
 			// Create a new job and attempt to install it as the active one.
 			val newJob = scope.launch(start = LAZY) {
-				performSync(tokens)
+				try {
+					performSync(accessToken)
+				} finally {
+					activeJob.value = null
+				}
 			}
 			if (activeJob.compareAndSet(null, newJob)) {
 				newJob.start()
@@ -63,9 +63,7 @@ class SyncManager(
 		}
 	}
 
-	private suspend fun performSync(tokens: Tokens) {
-		val (consumerKey, accessToken) = tokens
-
+	private suspend fun performSync(accessToken: String) {
 		val pendingList = withContext(ioContext) {
 			urlsQueries.pending().executeAsList()
 		}
@@ -74,7 +72,12 @@ class SyncManager(
 			// TODO try/catch stuff
 
 			val addResponse = api.add(
-				AddRequest(consumerKey, accessToken, pending.url, pending.added),
+				AddRequest(
+					consumerKey = BuildConfig.POCKET_CONSUMER_KEY,
+					accessToken = accessToken,
+					url = pending.url,
+					timestamp = pending.added,
+				),
 			)
 
 			val pocketId = addResponse.item.id
@@ -84,9 +87,9 @@ class SyncManager(
 
 			val sendResponse = api.send(
 				SendRequest(
-					consumerKey,
-					accessToken,
-					listOf(
+					consumerKey = BuildConfig.POCKET_CONSUMER_KEY,
+					accessToken = accessToken,
+					actions = listOf(
 						SendArchiveAction(pocketId, pending.added),
 					),
 				),

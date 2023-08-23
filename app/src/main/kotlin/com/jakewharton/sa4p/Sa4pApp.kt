@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.work.WorkManager
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.jakewharton.sa4p.auth.AuthManager
 import com.jakewharton.sa4p.db.Database
 import com.jakewharton.sa4p.db.InstantColumnAdapter
 import com.jakewharton.sa4p.db.Urls
@@ -16,16 +17,22 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.logging.HttpLoggingInterceptor.Level.BASIC
+import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import retrofit2.Retrofit
 import retrofit2.create
 
 class Sa4pApp : Application() {
+	// TODO Encapsulate this shit.
 	val scope = MainScope()
 
+	// TODO Encapsulate this shit.
 	lateinit var db: Database
 		private set
+
+	// TODO Encapsulate this shit.
 	lateinit var work: WorkManager
+		private set
+	lateinit var auth: AuthManager
 		private set
 	lateinit var sync: SyncManager
 		private set
@@ -52,14 +59,14 @@ class Sa4pApp : Application() {
 				if (BuildConfig.DEBUG) {
 					addNetworkInterceptor(
 						HttpLoggingInterceptor { Log.d("HTTP", it) }
-							.apply { setLevel(BASIC) },
+							.apply { setLevel(BODY) },
 					)
 				}
 			}
 			.build()
 
 		val json = Json {
-			prettyPrint = BuildConfig.DEBUG
+			// NOTE: The Pocket API appears to return 500s and 403s if you turn on pretty-printing.
 			ignoreUnknownKeys = true
 		}
 
@@ -76,6 +83,13 @@ class Sa4pApp : Application() {
 			urlsQueries = db.urlsQueries,
 			api = api,
 			ioContext = Dispatchers.IO,
+		)
+
+		auth = AuthManager(
+			scope = scope,
+			credentialsQueries = db.credentialsQueries,
+			oauthQueries = db.oauthQueries,
+			api = api,
 		)
 	}
 }

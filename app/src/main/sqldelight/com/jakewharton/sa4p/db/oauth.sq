@@ -1,0 +1,21 @@
+CREATE TABLE oauth (
+	code TEXT NOT NULL
+);
+
+update {
+	DELETE FROM oauth
+	;
+
+	INSERT INTO oauth(code)
+	VALUES (?)
+	;
+}
+
+get:
+SELECT code
+FROM oauth
+;
+
+clear:
+DELETE FROM oauth
+;

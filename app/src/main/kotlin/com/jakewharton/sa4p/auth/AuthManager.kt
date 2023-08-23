@@ -74,7 +74,7 @@ class AuthManager(
 			OauthAuthorizeRequest(
 				consumerKey = BuildConfig.POCKET_CONSUMER_KEY,
 				code = code,
-			)
+			),
 		)
 
 		withContext(Dispatchers.IO) {

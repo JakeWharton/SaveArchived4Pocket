@@ -76,7 +76,7 @@ class SyncManager(
 					consumerKey = BuildConfig.POCKET_CONSUMER_KEY,
 					accessToken = accessToken,
 					url = pending.url,
-					timestamp = pending.added
+					timestamp = pending.added,
 				),
 			)
 

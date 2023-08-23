@@ -74,8 +74,8 @@ fun MainPresenter(
 			Unauthenticated(
 				isAuthenticating = isAuthenticating,
 				onStartAuthentication = {
+					isAuthenticating = true
 					scope.launch {
-						isAuthenticating = true
 						val uri = try {
 							authManager.initiateAuthentication()
 						} finally {

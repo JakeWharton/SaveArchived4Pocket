@@ -19,7 +19,38 @@ interface PocketApi {
 	@POST("v3/send")
 	@Headers("X-Accept: application/json")
 	suspend fun send(@Body body: SendRequest): SendResponse
+
+	@POST("v3/oauth/request")
+	@Headers("X-Accept: application/json")
+	suspend fun oauthRequest(@Body body: OauthRequestRequest): OauthRequestResponse
+
+	@POST("v3/oauth/authorize")
+	@Headers("X-Accept: application/json")
+	suspend fun oauthAuthorize(@Body body: OauthAuthorizeRequest): OauthAuthorizeResponse
 }
+
+@Serializable
+data class OauthRequestRequest(
+	@SerialName("consumer_key") val consumerKey: String,
+	@SerialName("redirect_uri") val redirectUri: String,
+)
+
+@Serializable
+data class OauthRequestResponse(
+	val code: String,
+)
+
+@Serializable
+data class OauthAuthorizeRequest(
+	@SerialName("consumer_key") val consumerKey: String,
+	val code: String,
+)
+
+@Serializable
+data class OauthAuthorizeResponse(
+	@SerialName("access_token") val accessToken: String,
+	val username: String,
+)
 
 @Serializable
 data class AddRequest(

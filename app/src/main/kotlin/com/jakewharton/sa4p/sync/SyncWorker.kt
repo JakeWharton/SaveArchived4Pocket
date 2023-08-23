@@ -6,7 +6,6 @@ import androidx.work.Data
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.jakewharton.sa4p.Sa4pApp
-import com.jakewharton.sa4p.sync.SyncManager.Tokens
 import kotlinx.coroutines.CancellationException
 
 class SyncWorker(
@@ -15,11 +14,8 @@ class SyncWorker(
 ) : CoroutineWorker(appContext, workerParams) {
 	override suspend fun doWork(): Result {
 		val sync = (applicationContext as Sa4pApp).sync
-		val tokens = Tokens(
-			consumerKey = inputData.getString(ConsumerKey)!!,
-			accessToken = inputData.getString(AccessToken)!!,
-		)
-		val job = sync.sync(tokens)
+		val accessToken = inputData.getString(AccessToken)!!
+		val job = sync.sync(accessToken)
 		try {
 			job.join()
 		} catch (_: CancellationException) {
@@ -31,10 +27,8 @@ class SyncWorker(
 	}
 
 	companion object {
-		private const val ConsumerKey = "consumer_key"
 		private const val AccessToken = "access_token"
-		fun createData(consumerKey: String, accessToken: String): Data = workDataOf(
-			ConsumerKey to consumerKey,
+		fun createData(accessToken: String): Data = workDataOf(
 			AccessToken to accessToken,
 		)
 	}

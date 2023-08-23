@@ -62,7 +62,10 @@ fun BottomBar(model: MainModel) {
 				}
 
 				is Unauthenticated -> {
-					TextButton(onClick = { authentication.onStartAuthentication() }) {
+					TextButton(
+						enabled = !authentication.isAuthenticating,
+						onClick = { authentication.onStartAuthentication() },
+					) {
 						Icon(Filled.Person, contentDescription = "")
 						Text(modifier = Modifier.padding(start = 4.dp), text = "Sign in")
 					}

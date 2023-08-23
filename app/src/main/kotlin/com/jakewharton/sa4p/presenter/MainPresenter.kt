@@ -1,5 +1,7 @@
 package com.jakewharton.sa4p.presenter
 
+import android.content.Intent
+import android.content.Intent.ACTION_VIEW
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -7,34 +9,26 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
-import app.cash.sqldelight.coroutines.mapToOneOrNull
-import com.jakewharton.sa4p.db.AuthQueries
+import com.jakewharton.sa4p.auth.AuthManager
 import com.jakewharton.sa4p.db.Pending
 import com.jakewharton.sa4p.db.UrlsQueries
 import com.jakewharton.sa4p.sync.SyncManager
 import com.jakewharton.sa4p.sync.SyncManager.State
-import com.jakewharton.sa4p.sync.SyncManager.Tokens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
 fun MainPresenter(
-	urlsQueries: UrlsQueries,
-	authQueries: AuthQueries,
 	syncManager: SyncManager,
+	authManager: AuthManager,
+	urlsQueries: UrlsQueries,
 ): MainModel {
-	var isLoggingOut by remember {
-		mutableStateOf(false)
-	}
-
-	val _credentials by remember {
-		authQueries.credentials()
-			.asFlow()
-			.mapToOneOrNull(Dispatchers.IO)
-	}.collectAsState(initial = null)
-	val credentials = _credentials
+	val credentials = remember { authManager.credentials }
+		.collectAsState()
+		.value
 
 	val pending by remember {
 		urlsQueries.pending()
@@ -50,15 +44,18 @@ fun MainPresenter(
 
 	return MainModel(
 		authentication = if (credentials != null) {
+			var isLoggingOut by remember {
+				mutableStateOf(false)
+			}
 			Authenticated(
 				isLoggingOut = isLoggingOut,
 				username = "JakeWharton",
 				onSignOut = {
 					isLoggingOut = true
 					// TODO cancel work manager
-					scope.launch(Dispatchers.IO) {
+					scope.launch {
 						try {
-							authQueries.clear_credentials()
+							authManager.clearAuthentication()
 							// TODO error handling
 						} finally {
 							isLoggingOut = false
@@ -66,14 +63,26 @@ fun MainPresenter(
 					}
 				},
 				onSyncNow = {
-					syncManager.sync(Tokens(credentials.consumer_key, credentials.access_token))
+					syncManager.sync(credentials.accessToken)
 				},
 			)
 		} else {
+			val context = LocalContext.current
+			var isAuthenticating by remember {
+				mutableStateOf(false)
+			}
 			Unauthenticated(
+				isAuthenticating = isAuthenticating,
 				onStartAuthentication = {
-					authQueries.update("sup", "sup", "JakeWharton")
-					// TODO launch oauth https://getpocket.com/developer/docs/authentication
+					scope.launch {
+						isAuthenticating = true
+						val uri = try {
+							authManager.initiateAuthentication()
+						} finally {
+							isAuthenticating = false
+						}
+						context.startActivity(Intent(ACTION_VIEW, uri))
+					}
 				},
 			)
 		},
@@ -91,6 +100,7 @@ data class MainModel(
 sealed interface Authentication
 
 data class Unauthenticated(
+	val isAuthenticating: Boolean,
 	val onStartAuthentication: () -> Unit,
 ) : Authentication
 

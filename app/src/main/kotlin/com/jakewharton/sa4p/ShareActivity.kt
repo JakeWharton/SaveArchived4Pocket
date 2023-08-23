@@ -52,7 +52,7 @@ class ShareActivity : Activity() {
 		// Persist in the app scope so even if this activity is killed we do not lose user data.
 		val dbDeferred = appScope.async(Dispatchers.IO) {
 			db.urlsQueries.add(url, clock.now())
-			db.authQueries.credentials().executeAsOneOrNull()
+			db.credentialsQueries.get().executeAsOneOrNull()
 		}
 		val timeout = scope.launch(start = UNDISPATCHED) {
 			delay(250.milliseconds)
@@ -77,7 +77,7 @@ class ShareActivity : Activity() {
 			// display, this call will be instant. Otherwise we will suspend until it completes.
 			val auth = dbDeferred.await()
 			if (auth != null) {
-				val inputData = SyncWorker.createData(auth.consumer_key, auth.access_token)
+				val inputData = SyncWorker.createData(auth.access_token)
 				val constraints = Constraints(requiredNetworkType = CONNECTED)
 				work.enqueue(
 					OneTimeWorkRequestBuilder<SyncWorker>()

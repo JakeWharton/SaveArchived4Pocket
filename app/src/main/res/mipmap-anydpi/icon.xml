@@ -3,4 +3,5 @@
 		<color android:color="#ffffffff"/>
 	</background>
 	<foreground android:drawable="@drawable/icon_fg" />
+	<monochrome android:drawable="@drawable/icon_fg" />
 </adaptive-icon>

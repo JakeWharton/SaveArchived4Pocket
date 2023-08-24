@@ -4,6 +4,7 @@
 	<application
 		android:label="@string/app_name"
 		android:name=".Sa4pApp"
+		android:icon="@mipmap/icon"
 		>
 		<activity
 			android:name=".UiActivity"

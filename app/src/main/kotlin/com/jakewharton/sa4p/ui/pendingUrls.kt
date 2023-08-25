@@ -6,7 +6,6 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.jakewharton.sa4p.db.Pending
 import com.jakewharton.sa4p.db.Urls
@@ -21,11 +20,7 @@ fun PendingUrls(urls: List<Pending>) {
 			items(urls) { pending ->
 				ListItem(
 					headlineContent = {
-						Text(
-							text = pending.url,
-							maxLines = 1,
-							overflow = TextOverflow.Ellipsis,
-						)
+						Text(pending.url)
 					},
 				)
 				Divider()

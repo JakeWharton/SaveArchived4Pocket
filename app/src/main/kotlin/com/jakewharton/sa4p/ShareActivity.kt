@@ -91,6 +91,7 @@ class ShareActivity : Activity() {
 			// TODO Good looking toast, not this crap.
 			// TODO Indicate if you are not authenticated and offer a button
 			Toast.makeText(this@ShareActivity, "URL saved!", LENGTH_SHORT).show()
+			finish()
 		}
 	}
 

@@ -68,6 +68,7 @@ class Sa4pApp : Application() {
 		val json = Json {
 			// NOTE: The Pocket API appears to return 500s and 403s if you turn on pretty-printing.
 			ignoreUnknownKeys = true
+			classDiscriminator = "action"
 		}
 
 		val api = Retrofit.Builder()

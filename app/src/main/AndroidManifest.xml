@@ -29,7 +29,7 @@
 			android:name=".ShareActivity"
 			android:label="@string/share_activity_name"
 			android:exported="true"
-			android:theme="@android:style/Theme.NoDisplay"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
 			>
 			<intent-filter>
 				<action android:name="android.intent.action.SEND"/>

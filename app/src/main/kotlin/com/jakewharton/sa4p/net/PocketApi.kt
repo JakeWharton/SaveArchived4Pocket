@@ -84,6 +84,7 @@ data class SendRequest(
 sealed interface SendAction
 
 @Serializable
+@SerialName("archive")
 data class SendArchiveAction(
 	@SerialName("item_id") val itemId: String,
 	@Serializable(UnixTimeSerializer::class)

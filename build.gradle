@@ -39,7 +39,7 @@ subprojects {
 	plugins.withId('com.android.base') {
 		android {
 			defaultConfig {
-				minSdk 34
+				minSdk 33
 				compileSdk 34
 			}
 			compileOptions {

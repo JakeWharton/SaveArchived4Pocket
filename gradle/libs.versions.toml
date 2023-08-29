@@ -36,7 +36,7 @@ retrofit-kotlinxSerializationConverter = "com.jakewharton.retrofit:retrofit2-kot
 okhttp-core = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 
-spotlessPlugin = "com.diffplug.spotless:spotless-plugin-gradle:6.20.0"
+spotlessPlugin = "com.diffplug.spotless:spotless-plugin-gradle:6.21.0"
 
 sqldelight-plugin = { module = "app.cash.sqldelight:gradle-plugin", version.ref = "sqldelight" }
 sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }

@@ -28,7 +28,7 @@ jobs:
 
       - run: ./gradlew build
         env:
-          ORG_GRADLE_PROJECT_SA4P_POCKET_CONSUMER_KEYe: ${{ secrets.SA4P_POCKET_CONSUMER_KEY }}
+          ORG_GRADLE_PROJECT_SA4P_POCKET_CONSUMER_KEY: ${{ secrets.SA4P_POCKET_CONSUMER_KEY }}
 
       - uses: actions/upload-artifact@v3
         with:

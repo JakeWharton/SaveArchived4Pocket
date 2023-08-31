@@ -27,7 +27,7 @@ class UiActivity : ComponentActivity() {
 		)
 		// Fix for three-button nav not properly going edge-to-edge.
 		//  TODO https://issuetracker.google.com/issues/298296168
-		window.setFlags(FLAG_LAYOUT_NO_LIMITS, FLAG_LAYOUT_NO_LIMITS);
+		window.setFlags(FLAG_LAYOUT_NO_LIMITS, FLAG_LAYOUT_NO_LIMITS)
 
 		val app = application as Sa4pApp
 		val db = app.db

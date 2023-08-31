@@ -38,3 +38,8 @@ spotlessPlugin = "com.diffplug.spotless:spotless-plugin-gradle:6.21.0"
 sqldelight-plugin = { module = "app.cash.sqldelight:gradle-plugin", version.ref = "sqldelight" }
 sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
+
+paparazziPlugin = "app.cash.paparazzi:paparazzi-gradle-plugin:1.3.1"
+
+junit = "junit:junit:4.13.2"
+testParameterInjector = "com.google.testparameterinjector:test-parameter-injector:1.12"

@@ -17,7 +17,7 @@ fun PendingUrls(urls: List<Pending>) {
 		ListItem(headlineContent = { Text("No URLs to sync!") })
 	} else {
 		LazyColumn {
-			items(urls) { pending ->
+			items(urls, key = { it.id.id }) { pending ->
 				ListItem(
 					headlineContent = {
 						Text(pending.url)

@@ -12,6 +12,7 @@ buildscript {
 		classpath(libs.androidGradlePlugin)
 		classpath(libs.spotlessPlugin)
 		classpath(libs.sqldelight.plugin)
+		classpath(libs.paparazziPlugin)
 	}
 }
 

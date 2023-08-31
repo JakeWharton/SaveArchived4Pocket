@@ -90,3 +90,9 @@ sqldelight {
 		}
 	}
 }
+
+spotless {
+	kotlin {
+		targetExclude("src/test/snapshots/**")
+	}
+}

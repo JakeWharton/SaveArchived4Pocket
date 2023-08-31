@@ -1,6 +1,5 @@
 package com.jakewharton.sa4p.ui
 
-import android.content.res.Resources.Theme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,7 +36,7 @@ fun MainUi(model: MainModel) {
 		Scaffold(
 			topBar = {
 				TopAppBar(
-					title = { Text(text = stringResource(id = R.string.ui_activity_name)) },
+					title = { Text(text = stringResource(id = R.string.app_name)) },
 					colors = TopAppBarDefaults.topAppBarColors(
 						containerColor = MaterialTheme.colorScheme.primary,
 						titleContentColor = MaterialTheme.colorScheme.onPrimary,

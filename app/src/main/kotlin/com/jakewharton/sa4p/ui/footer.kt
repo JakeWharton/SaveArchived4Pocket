@@ -27,6 +27,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import com.jakewharton.sa4p.presenter.Authenticated
@@ -42,11 +43,17 @@ fun BottomBar(model: MainModel) {
 				is Authenticated -> {
 					var confirm by remember { mutableStateOf(false) }
 					if (confirm) {
-						TextButton(onClick = { authentication.onSignOut() }) {
+						TextButton(
+							onClick = { authentication.onSignOut() },
+							enabled = !authentication.isLoggingOut,
+						) {
 							Icon(Filled.Check, contentDescription = "")
 							Text(modifier = Modifier.padding(start = 4.dp), text = "Sign out")
 						}
-						TextButton(onClick = { confirm = false }) {
+						TextButton(
+							onClick = { confirm = false },
+							enabled = !authentication.isLoggingOut,
+						) {
 							Icon(Filled.Clear, contentDescription = "")
 							Text(modifier = Modifier.padding(start = 4.dp), text = "Cancel")
 						}
@@ -96,7 +103,12 @@ fun BottomBar(model: MainModel) {
 						0f
 					}
 					Icon(
-						modifier = Modifier.rotate(rotation),
+						modifier = Modifier
+							.rotate(rotation)
+							// We cannot disable the FAB when sync is running, so try to visually replicate it
+							// by dimming the icon.
+							// TODO https://issuetracker.google.com/issues/243799938
+							.alpha(if (model.syncRunning) 0.7f else 1f),
 						imageVector = Filled.Refresh,
 						contentDescription = "Synchronize URLs to Pocket",
 					)

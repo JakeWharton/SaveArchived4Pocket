@@ -22,7 +22,7 @@ class UiActivity : ComponentActivity() {
 			statusBarStyle = SystemBarStyle.auto(TRANSPARENT, TRANSPARENT) {
 				// App bar is inverted, so dark icons in dark mode and light icons in light mode.
 				(resources.configuration.uiMode and UI_MODE_NIGHT_MASK) == UI_MODE_NIGHT_NO
-			}
+			},
 		)
 
 		val app = application as Sa4pApp

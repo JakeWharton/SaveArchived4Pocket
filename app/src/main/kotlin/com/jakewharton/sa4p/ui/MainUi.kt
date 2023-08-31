@@ -9,30 +9,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.res.stringResource
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.jakewharton.sa4p.R
 import com.jakewharton.sa4p.presenter.MainModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainUi(model: MainModel) {
-	val systemUiController = rememberSystemUiController()
-
 	Theme {
-		val appBarColor = MaterialTheme.colorScheme.primary
-
-		LaunchedEffect(systemUiController) {
-			systemUiController.setSystemBarsColor(
-				color = Color.Transparent,
-				darkIcons = appBarColor.luminance() > 0.5f,
-			)
-		}
-
 		Scaffold(
 			topBar = {
 				TopAppBar(

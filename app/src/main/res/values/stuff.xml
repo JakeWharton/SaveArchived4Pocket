@@ -2,4 +2,7 @@
 <resources>
 	<string name="app_name">SA4P</string>
 	<string name="share_activity_name">Archive</string>
+
+	<style name="BaseTheme.SA4P" parent="android:Theme.Material.Light.NoActionBar" />
+	<style name="Theme.SA4P" parent="BaseTheme.SA4P" />
 </resources>

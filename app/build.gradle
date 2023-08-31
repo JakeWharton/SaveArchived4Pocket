@@ -27,6 +27,8 @@ android {
 		signingConfig signingConfigs.upload
 
 		buildConfigField 'String', 'POCKET_CONSUMER_KEY', "\"${propOrEmpty('SA4P_POCKET_CONSUMER_KEY')}\""
+
+		resConfigs('en')
 	}
 
 	buildTypes {

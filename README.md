@@ -15,7 +15,7 @@ Is it overkill? Yes. But I've done the manual dance over one hundreds times and 
 
 Play Store coming soon. Maybe. Maybe not.
 
-A signed debug APK and unsigned release APK are available from each GitHub Action build for now.
+Debug and release APKs signed with the upload key are available on each GitHub Action build for now.
 
 
 ## License

@@ -14,6 +14,12 @@ android {
 		compose = true
 	}
 
+	// See https://developer.android.com/build/releases/past-releases/agp-4-0-0-release-notes#dependency-metadata
+	dependenciesInfo {
+		includeInApk = false
+		includeInBundle = false
+	}
+
 	signingConfigs {
 		upload {
 			storeFile file('upload.keystore')

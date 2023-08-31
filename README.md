@@ -8,7 +8,7 @@ and then immediately archive it.
 This app shortens the process to simply sharing to SA4P. The app takes care of adding it to Pocket
 and then performing the archive.
 
-Is it overkill? Yes. But I've done the manual dance over one hundreds times and I'm done with it.
+Is it overkill? Yes. But I've done the manual dance over one hundred times and I'm done with it.
 
 
 ## Install

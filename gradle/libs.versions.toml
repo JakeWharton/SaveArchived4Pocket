@@ -10,7 +10,7 @@ accompanist-systemUiController = "com.google.accompanist:accompanist-systemuicon
 
 androidGradlePlugin = "com.android.tools.build:gradle:8.1.1"
 
-androidx-activity-compose = "androidx.activity:activity-compose:1.7.2"
+androidx-activity-compose = "androidx.activity:activity-compose:1.8.0-alpha07"
 # This isn't strictly used, but allows Renovate to see us using the Compose Compiler artifact
 androidx-compose-compiler = "androidx.compose.compiler:compiler:1.5.3"
 androidx-compose-material3 = "androidx.compose.material3:material3:1.1.1"
@@ -19,7 +19,6 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", versi
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-compose" }
 androidx-work-runtime = "androidx.work:work-runtime-ktx:2.8.1"
 
-
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-serializationPlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 
@@ -27,8 +26,6 @@ kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
-
-material = { module = "com.google.android.material:material", version = "1.9.0" }
 
 retrofit-core = "com.squareup.retrofit2:retrofit:2.9.0"
 retrofit-kotlinxSerializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"

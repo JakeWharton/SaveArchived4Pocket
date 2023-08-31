@@ -2,10 +2,14 @@ package com.jakewharton.sa4p
 
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
+import android.content.res.Configuration.UI_MODE_NIGHT_MASK
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.graphics.Color.TRANSPARENT
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
-import androidx.core.view.WindowCompat
+import androidx.activity.enableEdgeToEdge
 import com.jakewharton.sa4p.presenter.MainPresenter
 import com.jakewharton.sa4p.ui.MainUi
 import kotlinx.coroutines.launch
@@ -13,7 +17,13 @@ import kotlinx.coroutines.launch
 class UiActivity : ComponentActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		WindowCompat.setDecorFitsSystemWindows(window, false)
+
+		enableEdgeToEdge(
+			statusBarStyle = SystemBarStyle.auto(TRANSPARENT, TRANSPARENT) {
+				// App bar is inverted, so dark icons in dark mode and light icons in light mode.
+				(resources.configuration.uiMode and UI_MODE_NIGHT_MASK) == UI_MODE_NIGHT_NO
+			}
+		)
 
 		val app = application as Sa4pApp
 		val db = app.db

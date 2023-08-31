@@ -9,7 +9,7 @@
 		<activity
 			android:name=".UiActivity"
 			android:exported="true"
-			android:theme="@style/Theme.Material3.DayNight.NoActionBar"
+			android:theme="@style/Theme.SA4P"
 			android:launchMode="singleTop"
 			>
 			<intent-filter>

@@ -18,6 +18,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          lfs: true
       - uses: actions/setup-java@v3.12.0
         with:
           distribution: 'zulu'
@@ -26,9 +28,16 @@ jobs:
         with:
           gradle-home-cache-cleanup: true
 
-      - run: ./gradlew build
+      - run: ./gradlew build verifyPaparazziDebug
         env:
           ORG_GRADLE_PROJECT_SA4P_POCKET_CONSUMER_KEY: ${{ secrets.SA4P_POCKET_CONSUMER_KEY }}
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: reports
+          path: app/build/reports
+          if-no-files-found: error
 
       - uses: actions/upload-artifact@v3
         with:

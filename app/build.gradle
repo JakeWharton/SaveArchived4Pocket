@@ -13,35 +13,28 @@ android {
 		compose = true
 	}
 
-	defaultConfig {
-		targetSdk 34
-
-		buildConfigField 'String', 'POCKET_CONSUMER_KEY', "\"${propOrEmpty('SA4P_POCKET_CONSUMER_KEY')}\""
-	}
-
 	signingConfigs {
-		debug {
-			storeFile file('debug.keystore')
+		upload {
+			storeFile file('upload.keystore')
 			storePassword 'sa1234p'
 			keyAlias 'sa4p'
 			keyPassword 'sa1234p'
 		}
 	}
 
+	defaultConfig {
+		targetSdk 34
+		signingConfig signingConfigs.upload
+
+		buildConfigField 'String', 'POCKET_CONSUMER_KEY', "\"${propOrEmpty('SA4P_POCKET_CONSUMER_KEY')}\""
+	}
+
 	buildTypes {
 		debug {
 			applicationIdSuffix = '.debug'
 			versionNameSuffix = 'debug'
-			signingConfig signingConfigs.debug
 		}
 		release {
-			if (file('upload.keystore').exists()) {
-				// TODO signingConfig signingConfigs.upload
-			} else {
-				signingConfig signingConfigs.debug
-				versionNameSuffix = 'release-debug'
-			}
-
 			minifyEnabled true
 			shrinkResources true
 			proguardFiles(file('shrinker-rules.pro'))

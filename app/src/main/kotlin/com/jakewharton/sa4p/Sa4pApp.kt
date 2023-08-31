@@ -66,7 +66,7 @@ class Sa4pApp : Application() {
 			.build()
 
 		val json = Json {
-			// NOTE: The Pocket API appears to return 500s and 403s if you turn on pretty-printing.
+			prettyPrint = true
 			ignoreUnknownKeys = true
 			classDiscriminator = "action"
 		}

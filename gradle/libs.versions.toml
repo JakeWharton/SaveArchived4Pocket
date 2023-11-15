@@ -10,7 +10,7 @@ accompanist-systemUiController = "com.google.accompanist:accompanist-systemuicon
 
 androidGradlePlugin = "com.android.tools.build:gradle:8.1.1"
 
-androidx-activity-compose = "androidx.activity:activity-compose:1.8.0"
+androidx-activity-compose = "androidx.activity:activity-compose:1.8.1"
 # This isn't strictly used, but allows Renovate to see us using the Compose Compiler artifact.
 androidx-compose-compiler = "androidx.compose.compiler:compiler:1.5.4"
 androidx-compose-material3 = "androidx.compose.material3:material3:1.1.2"

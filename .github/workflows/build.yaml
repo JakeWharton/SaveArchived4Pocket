@@ -32,26 +32,26 @@ jobs:
         env:
           ORG_GRADLE_PROJECT_SA4P_POCKET_CONSUMER_KEY: ${{ secrets.SA4P_POCKET_CONSUMER_KEY }}
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: reports
           path: app/build/reports
           if-no-files-found: error
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: sa4p-debug.apk
           path: app/build/outputs/apk/debug/sa4p-debug.apk
           if-no-files-found: error
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: sa4p-release-upload-signed.apk
           path: app/build/outputs/apk/release/sa4p-release.apk
           if-no-files-found: error
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: mappings
           path: app/build/outputs/mapping/release

@@ -34,10 +34,10 @@ import com.jakewharton.sa4p.presenter.Authenticated
 import com.jakewharton.sa4p.presenter.MainModel
 import com.jakewharton.sa4p.presenter.Unauthenticated
 
-@Suppress("ktlint:compose:modifier-missing-check") // BottomAppBar has its own modifier
 @Composable
 fun BottomBar(
 	model: MainModel,
+	modifier: Modifier = Modifier,
 ) {
 	BottomAppBar(
 		modifier = modifier.wrapContentHeight(),

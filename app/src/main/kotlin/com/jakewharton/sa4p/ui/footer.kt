@@ -40,7 +40,7 @@ fun BottomBar(
 	model: MainModel,
 ) {
 	BottomAppBar(
-		modifier = Modifier.wrapContentHeight(),
+		modifier = modifier.wrapContentHeight(),
 		actions = {
 			when (val authentication = model.authentication) {
 				is Authenticated -> {

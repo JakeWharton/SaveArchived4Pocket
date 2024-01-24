@@ -141,7 +141,8 @@ class MainUiTest(
 		return Pending(
 			id = Urls.Id(nextId++),
 			url = url,
-			added = Instant.DISTANT_FUTURE, // Currently unused at UI layer.
+			// Currently unused at UI layer.
+			added = Instant.DISTANT_FUTURE,
 		)
 	}
 }

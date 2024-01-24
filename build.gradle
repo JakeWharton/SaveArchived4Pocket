@@ -21,10 +21,14 @@ subprojects {
 	spotless {
 		kotlin {
 			target("src/**/*.kt")
-			ktlint(libs.ktlint.get().version).editorConfigOverride([
-				'ktlint_standard_filename': 'disabled',
-				'ktlint_function_naming_ignore_when_annotated_with': 'Composable',
-			])
+			ktlint(libs.ktlint.get().version)
+				.editorConfigOverride([
+					'ktlint_standard_filename'                         : 'disabled',
+					'ktlint_function_naming_ignore_when_annotated_with': 'Composable',
+				])
+				.customRuleSets([
+				  libs.composeRules.get().toString()
+				])
 		}
 	}
 

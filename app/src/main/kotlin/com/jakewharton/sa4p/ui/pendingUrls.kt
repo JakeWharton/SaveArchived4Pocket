@@ -6,17 +6,28 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.jakewharton.sa4p.db.Pending
 import com.jakewharton.sa4p.db.Urls
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.datetime.Instant
 
 @Composable
-fun PendingUrls(urls: List<Pending>) {
+fun PendingUrls(
+	urls: ImmutableList<Pending>,
+	modifier: Modifier = Modifier,
+) {
 	if (urls.isEmpty()) {
-		ListItem(headlineContent = { Text("No URLs to sync!") })
+		ListItem(
+			modifier = modifier,
+			headlineContent = { Text("No URLs to sync!") },
+		)
 	} else {
-		LazyColumn {
+		LazyColumn(
+			modifier = modifier,
+		) {
 			items(urls, key = { it.id.id }) { pending ->
 				ListItem(
 					headlineContent = {
@@ -31,15 +42,15 @@ fun PendingUrls(urls: List<Pending>) {
 
 @Preview
 @Composable
-fun PendingUrlsEmptyPreview() {
-	PendingUrls(urls = emptyList())
+private fun PendingUrlsEmptyPreview() {
+	PendingUrls(urls = persistentListOf())
 }
 
 @Preview
 @Composable
-fun PendingUrlsPopulatedPreview() {
+private fun PendingUrlsPopulatedPreview() {
 	PendingUrls(
-		urls = listOf(
+		urls = persistentListOf(
 			Pending(
 				id = Urls.Id(0),
 				url = "https://example.com/ball.php",

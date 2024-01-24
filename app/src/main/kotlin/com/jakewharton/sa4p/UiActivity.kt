@@ -11,7 +11,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.jakewharton.sa4p.presenter.MainPresenter
+import com.jakewharton.sa4p.presenter.mainPresenter
 import com.jakewharton.sa4p.ui.MainUi
 import kotlinx.coroutines.launch
 
@@ -35,7 +35,7 @@ class UiActivity : ComponentActivity() {
 		val authManager = app.auth
 
 		setContent {
-			MainUi(MainPresenter(syncManager, authManager, db.urlsQueries))
+			MainUi(mainPresenter(syncManager, authManager, db.urlsQueries))
 		}
 	}
 

@@ -17,11 +17,13 @@ import com.jakewharton.sa4p.db.Pending
 import com.jakewharton.sa4p.db.UrlsQueries
 import com.jakewharton.sa4p.sync.SyncManager
 import com.jakewharton.sa4p.sync.SyncManager.State
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun MainPresenter(
+fun mainPresenter(
 	syncManager: SyncManager,
 	authManager: AuthManager,
 	urlsQueries: UrlsQueries,
@@ -87,13 +89,13 @@ fun MainPresenter(
 			)
 		},
 		syncRunning = syncState != State.Idle,
-		pendingUrls = pending,
+		pendingUrls = pending.toPersistentList(),
 	)
 }
 
 data class MainModel(
 	val authentication: Authentication,
-	val pendingUrls: List<Pending>,
+	val pendingUrls: ImmutableList<Pending>,
 	val syncRunning: Boolean,
 )
 

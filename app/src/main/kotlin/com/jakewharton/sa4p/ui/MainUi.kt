@@ -16,9 +16,13 @@ import com.jakewharton.sa4p.presenter.MainModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainUi(model: MainModel) {
+fun MainUi(
+	model: MainModel,
+	modifier: Modifier = Modifier,
+) {
 	Theme {
 		Scaffold(
+			modifier = modifier,
 			topBar = {
 				TopAppBar(
 					title = { Text(text = stringResource(id = R.string.app_name)) },

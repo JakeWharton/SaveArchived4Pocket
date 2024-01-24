@@ -135,6 +135,7 @@ private val DarkColors = darkColorScheme(
 	scrim = md_theme_dark_scrim,
 )
 
+@Suppress("ktlint:compose:modifier-missing-check") // MaterialTheme doesn't have a modifier
 @Composable
 fun Theme(
 	darkTheme: Boolean = isSystemInDarkTheme(),

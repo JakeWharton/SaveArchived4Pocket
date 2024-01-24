@@ -35,9 +35,12 @@ import com.jakewharton.sa4p.presenter.MainModel
 import com.jakewharton.sa4p.presenter.Unauthenticated
 
 @Composable
-fun BottomBar(model: MainModel) {
+fun BottomBar(
+	model: MainModel,
+	modifier: Modifier = Modifier,
+) {
 	BottomAppBar(
-		modifier = Modifier.wrapContentHeight(),
+		modifier = modifier.wrapContentHeight(),
 		actions = {
 			when (val authentication = model.authentication) {
 				is Authenticated -> {

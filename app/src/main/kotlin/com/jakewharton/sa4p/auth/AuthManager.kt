@@ -50,7 +50,7 @@ class AuthManager(
 				consumerKey = BuildConfig.POCKET_CONSUMER_KEY.ifEmpty {
 					throw IllegalStateException("No Pocket consumer key available")
 				},
-				redirectUri = RedirectUri,
+				redirectUri = REDIRECT_URI,
 			),
 		)
 		withContext(Dispatchers.IO) {
@@ -61,7 +61,7 @@ class AuthManager(
 			.authority("getpocket.com")
 			.path("/auth/authorize")
 			.appendQueryParameter("request_token", response.code)
-			.appendQueryParameter("redirect_uri", RedirectUri)
+			.appendQueryParameter("redirect_uri", REDIRECT_URI)
 			.build()
 	}
 
@@ -84,4 +84,4 @@ class AuthManager(
 	}
 }
 
-private const val RedirectUri = "pocketapp108648:authorizationFinished"
+private const val REDIRECT_URI = "pocketapp108648:authorizationFinished"

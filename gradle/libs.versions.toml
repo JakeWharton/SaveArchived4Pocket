@@ -1,7 +1,7 @@
 [versions]
 androidx-compose = "1.6.1"
 kotlin = "1.9.22"
-kotlinx-serialization = "1.6.2"
+kotlinx-serialization = "1.6.3"
 sqldelight = "2.0.1"
 okhttp = "4.12.0"
 

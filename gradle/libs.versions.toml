@@ -28,7 +28,7 @@ kotlinx-immutableCollection = "org.jetbrains.kotlinx:kotlinx-collections-immutab
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
-retrofit-core = "com.squareup.retrofit2:retrofit:2.10.0"
+retrofit-core = "com.squareup.retrofit2:retrofit:2.11.0"
 retrofit-kotlinxSerializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
 
 okhttp-core = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }

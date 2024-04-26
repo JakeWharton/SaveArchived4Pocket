@@ -46,4 +46,4 @@ ktlint = "com.pinterest.ktlint:ktlint-cli:1.2.1"
 composeRules = "io.nlopez.compose.rules:ktlint:0.3.18"
 
 junit = "junit:junit:4.13.2"
-testParameterInjector = "com.google.testparameterinjector:test-parameter-injector:1.15"
+testParameterInjector = "com.google.testparameterinjector:test-parameter-injector:1.16"

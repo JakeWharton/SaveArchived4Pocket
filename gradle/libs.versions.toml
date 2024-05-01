@@ -12,7 +12,7 @@ androidGradlePlugin = "com.android.tools.build:gradle:8.4.0"
 
 androidx-activity-compose = "androidx.activity:activity-compose:1.9.0"
 # This isn't strictly used, but allows Renovate to see us using the Compose Compiler artifact.
-androidx-compose-compiler = "androidx.compose.compiler:compiler:1.5.12"
+androidx-compose-compiler = "androidx.compose.compiler:compiler:1.5.13"
 androidx-compose-material3 = "androidx.compose.material3:material3:1.2.1"
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }

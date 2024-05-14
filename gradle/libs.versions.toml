@@ -22,7 +22,7 @@ androidx-work-runtime = "androidx.work:work-runtime-ktx:2.9.0"
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-serializationPlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 
-kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.5.0"
+kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.0"
 kotlinx-immutableCollection = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7"
 
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }

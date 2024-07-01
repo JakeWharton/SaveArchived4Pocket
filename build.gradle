@@ -8,6 +8,7 @@ buildscript {
 	}
 	dependencies {
 		classpath(libs.kotlin.gradlePlugin)
+		classpath(libs.kotlin.composePlugin)
 		classpath(libs.kotlin.serializationPlugin)
 		classpath(libs.androidGradlePlugin)
 		classpath(libs.spotlessPlugin)
@@ -53,9 +54,6 @@ subprojects {
 			compileOptions {
 				sourceCompatibility JavaVersion.VERSION_11
 				targetCompatibility JavaVersion.VERSION_11
-			}
-			composeOptions {
-				kotlinCompilerExtensionVersion = libs.androidx.compose.compiler.get().version
 			}
 		}
 	}

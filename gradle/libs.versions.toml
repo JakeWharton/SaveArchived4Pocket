@@ -11,8 +11,6 @@ accompanist-systemUiController = "com.google.accompanist:accompanist-systemuicon
 androidGradlePlugin = "com.android.tools.build:gradle:8.4.2"
 
 androidx-activity-compose = "androidx.activity:activity-compose:1.9.0"
-# This isn't strictly used, but allows Renovate to see us using the Compose Compiler artifact.
-androidx-compose-compiler = "androidx.compose.compiler:compiler:1.5.14"
 androidx-compose-material3 = "androidx.compose.material3:material3:1.2.1"
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
@@ -20,6 +18,7 @@ androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling
 androidx-work-runtime = "androidx.work:work-runtime-ktx:2.9.0"
 
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-composePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 kotlin-serializationPlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 
 kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.0"

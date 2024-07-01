@@ -89,6 +89,17 @@ class MainUiTest(
 				),
 			)
 		}
+
+		// TODO: This doesn't work because Snackbar decided to be a special snowflake that manages
+		//  its own state so rather than being a dumb fucking UI component like everything else.
+		paparazzi.snapshot("error") {
+			MainUi(
+				defaultModel.copy(
+					syncRunning = false,
+					syncError = "500 Internal Server Error",
+				),
+			)
+		}
 	}
 
 	@Test fun urls() {
@@ -135,6 +146,7 @@ class MainUiTest(
 		),
 		pendingUrls = persistentListOf(),
 		syncRunning = false,
+		syncError = null,
 	)
 
 	private var nextId = 1L

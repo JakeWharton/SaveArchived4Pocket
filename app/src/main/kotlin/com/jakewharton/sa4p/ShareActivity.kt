@@ -3,6 +3,7 @@ package com.jakewharton.sa4p
 import android.app.Activity
 import android.content.Intent.EXTRA_TEXT
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.work.Constraints
@@ -29,15 +30,18 @@ class ShareActivity : Activity() {
 		val intent = intent
 		if (intent.type == "text/plain") {
 			val data = intent.getStringExtra(EXTRA_TEXT)
-			if (data != null) {
+			if (!data.isNullOrEmpty()) {
 				// TODO Try to validate it's a URL? Is this our problem? Does Pocket tell us?
+				Log.d("ShareActivity", "Saving URL: $data")
 				saveUrl(data)
 			} else {
-				// TODO log no text
+				Toast.makeText(this, "Null or empty intent text extra", LENGTH_SHORT).show()
+				Log.e("ShareActivity", "Null or empty intent text extra: $intent ${intent.extras}")
 				finish()
 			}
 		} else {
-			// TODO log wrong type
+			Toast.makeText(this, "Unsupported intent type: ${intent.type}", LENGTH_SHORT).show()
+			Log.e("ShareActivity", "Unsupported intent type: $intent")
 			finish()
 		}
 	}

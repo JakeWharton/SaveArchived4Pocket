@@ -6,17 +6,17 @@ import com.jakewharton.sa4p.net.AddRequest
 import com.jakewharton.sa4p.net.PocketApi
 import com.jakewharton.sa4p.net.SendArchiveAction
 import com.jakewharton.sa4p.net.SendRequest
-import com.jakewharton.sa4p.sync.SyncManager.State.Idle
-import com.jakewharton.sa4p.sync.SyncManager.State.Running
+import java.io.IOException
+import java.util.concurrent.atomic.AtomicReference
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart.LAZY
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
 class SyncManager(
 	private val scope: CoroutineScope,
@@ -24,33 +24,33 @@ class SyncManager(
 	private val api: PocketApi,
 	private val ioContext: CoroutineContext,
 ) {
-	private val activeJob = MutableStateFlow<Job?>(null)
+	private val activeJob = AtomicReference<Job>()
 
-	enum class State {
-		Idle,
-		Running,
+	sealed interface State {
+		data class Idle(val error: String? = null) : State
+		data object Running : State
 	}
-	val state: StateFlow<State> get() = object : StateFlow<State> {
-		override val replayCache: List<State> get() = listOf(value)
-		override val value: State get() = if (activeJob.value == null) Idle else Running
-		override suspend fun collect(collector: FlowCollector<State>): Nothing {
-			activeJob.collect {
-				collector.emit(if (it == null) Idle else Running)
-			}
-		}
-	}
+
+	private val _state = MutableStateFlow<State>(State.Idle(null))
+	val state: StateFlow<State> get() = _state
 
 	fun sync(accessToken: String): Job {
 		while (true) {
 			// If there's an active Job, grab and return it.
-			activeJob.value?.let { return it }
+			activeJob.get()?.let { return it }
 
 			// Create a new job and attempt to install it as the active one.
 			val newJob = scope.launch(start = LAZY) {
-				try {
+				_state.value = State.Running
+				_state.value = try {
 					performSync(accessToken)
+					State.Idle()
+				} catch (e: HttpException) {
+					State.Idle(e.message)
+				} catch (e: IOException) {
+					State.Idle(e.message)
 				} finally {
-					activeJob.value = null
+					activeJob.set(null)
 				}
 			}
 			if (activeJob.compareAndSet(null, newJob)) {
@@ -69,8 +69,6 @@ class SyncManager(
 		}
 
 		for (pending in pendingList) {
-			// TODO try/catch stuff
-
 			val addResponse = api.add(
 				AddRequest(
 					consumerKey = BuildConfig.POCKET_CONSUMER_KEY,

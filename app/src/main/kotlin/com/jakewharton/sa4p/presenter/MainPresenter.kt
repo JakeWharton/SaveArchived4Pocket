@@ -88,8 +88,9 @@ fun mainPresenter(
 				},
 			)
 		},
-		syncRunning = syncState != State.Idle,
 		pendingUrls = pending.toPersistentList(),
+		syncRunning = syncState is State.Running,
+		syncError = (syncState as? State.Idle)?.error,
 	)
 }
 
@@ -97,6 +98,7 @@ data class MainModel(
 	val authentication: Authentication,
 	val pendingUrls: ImmutableList<Pending>,
 	val syncRunning: Boolean,
+	val syncError: String?,
 )
 
 sealed interface Authentication

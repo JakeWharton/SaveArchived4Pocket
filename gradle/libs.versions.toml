@@ -10,7 +10,7 @@ accompanist-systemUiController = "com.google.accompanist:accompanist-systemuicon
 
 androidGradlePlugin = "com.android.tools.build:gradle:8.6.0"
 
-androidx-activity-compose = "androidx.activity:activity-compose:1.9.1"
+androidx-activity-compose = "androidx.activity:activity-compose:1.9.2"
 androidx-compose-material3 = "androidx.compose.material3:material3:1.2.1"
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }

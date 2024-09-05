@@ -22,7 +22,7 @@ kotlin-composePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-
 kotlin-serializationPlugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 
 kotlinx-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.1"
-kotlinx-immutableCollection = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7"
+kotlinx-immutableCollection = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.8"
 
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }

@@ -1,5 +1,5 @@
 [versions]
-androidx-compose = "1.7.3"
+androidx-compose = "1.7.4"
 kotlin = "2.0.21"
 kotlinx-serialization = "1.7.3"
 sqldelight = "2.0.2"

@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import androidx.work.WorkManager
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.jakewharton.sa4p.auth.AuthManager
 import com.jakewharton.sa4p.db.Database
 import com.jakewharton.sa4p.db.InstantColumnAdapter
@@ -19,6 +18,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 
 class Sa4pApp : Application() {

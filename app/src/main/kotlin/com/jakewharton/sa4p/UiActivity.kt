@@ -6,7 +6,6 @@ import android.content.res.Configuration.UI_MODE_NIGHT_MASK
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.graphics.Color.TRANSPARENT
 import android.os.Bundle
-import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
@@ -27,7 +26,7 @@ class UiActivity : ComponentActivity() {
 		)
 		// Fix for three-button nav not properly going edge-to-edge.
 		//  TODO https://issuetracker.google.com/issues/298296168
-		window.setFlags(FLAG_LAYOUT_NO_LIMITS, FLAG_LAYOUT_NO_LIMITS)
+		window.isNavigationBarContrastEnforced = false
 
 		val app = application as Sa4pApp
 		val db = app.db

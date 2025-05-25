@@ -10,7 +10,6 @@ import com.jakewharton.sa4p.db.Urls
 import com.jakewharton.sa4p.presenter.Authenticated
 import com.jakewharton.sa4p.presenter.MainModel
 import com.jakewharton.sa4p.presenter.Unauthenticated
-import kotlinx.collections.immutable.persistentListOf
 import kotlinx.datetime.Instant
 import org.junit.Rule
 import org.junit.Test
@@ -106,14 +105,14 @@ class MainUiTest(
 		paparazzi.snapshot("empty") {
 			MainUi(
 				defaultModel.copy(
-					pendingUrls = persistentListOf(),
+					pendingUrls = emptyList(),
 				),
 			)
 		}
 		paparazzi.snapshot("one") {
 			MainUi(
 				defaultModel.copy(
-					pendingUrls = persistentListOf(
+					pendingUrls = listOf(
 						urlOf("https://example.com"),
 					),
 				),
@@ -122,7 +121,7 @@ class MainUiTest(
 		paparazzi.snapshot("many") {
 			MainUi(
 				defaultModel.copy(
-					pendingUrls = persistentListOf(
+					pendingUrls = listOf(
 						urlOf("https://jakewharton.com/smaller-apks-with-resource-optimization/"),
 						urlOf("https://blog.jetbrains.com/platform/2023/08/wayland-support/"),
 						urlOf("https://publicobject.com/2019/06/10/value-objects-service-objects-and-glue/"),
@@ -144,7 +143,7 @@ class MainUiTest(
 			onSignOut = {},
 			onSyncNow = {},
 		),
-		pendingUrls = persistentListOf(),
+		pendingUrls = emptyList(),
 		syncRunning = false,
 		syncError = null,
 	)

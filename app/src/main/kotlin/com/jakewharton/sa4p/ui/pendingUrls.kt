@@ -10,13 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.jakewharton.sa4p.db.Pending
 import com.jakewharton.sa4p.db.Urls
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 import kotlinx.datetime.Instant
 
 @Composable
 fun PendingUrls(
-	urls: ImmutableList<Pending>,
+	urls: List<Pending>,
 	modifier: Modifier = Modifier,
 ) {
 	if (urls.isEmpty()) {
@@ -43,14 +41,14 @@ fun PendingUrls(
 @Preview
 @Composable
 private fun PendingUrlsEmptyPreview() {
-	PendingUrls(urls = persistentListOf())
+	PendingUrls(urls = emptyList())
 }
 
 @Preview
 @Composable
 private fun PendingUrlsPopulatedPreview() {
 	PendingUrls(
-		urls = persistentListOf(
+		urls = listOf(
 			Pending(
 				id = Urls.Id(0),
 				url = "https://example.com/ball.php",

@@ -17,8 +17,6 @@ import com.jakewharton.sa4p.db.Pending
 import com.jakewharton.sa4p.db.UrlsQueries
 import com.jakewharton.sa4p.sync.SyncManager
 import com.jakewharton.sa4p.sync.SyncManager.State
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -88,7 +86,7 @@ fun mainPresenter(
 				},
 			)
 		},
-		pendingUrls = pending.toPersistentList(),
+		pendingUrls = pending,
 		syncRunning = syncState is State.Running,
 		syncError = (syncState as? State.Idle)?.error,
 	)
@@ -96,7 +94,7 @@ fun mainPresenter(
 
 data class MainModel(
 	val authentication: Authentication,
-	val pendingUrls: ImmutableList<Pending>,
+	val pendingUrls: List<Pending>,
 	val syncRunning: Boolean,
 	val syncError: String?,
 )

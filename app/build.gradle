@@ -69,6 +69,12 @@ android {
 	}
 }
 
+composeCompiler {
+	stabilityConfigurationFiles.addAll(
+		layout.projectDirectory.file("compose-stability.conf"),
+	)
+}
+
 dependencies {
 	implementation libs.accompanist.systemUiController
 	implementation libs.retrofit.core

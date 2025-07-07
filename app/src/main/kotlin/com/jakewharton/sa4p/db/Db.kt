@@ -1,7 +1,7 @@
 package com.jakewharton.sa4p.db
 
 import app.cash.sqldelight.ColumnAdapter
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 object InstantColumnAdapter : ColumnAdapter<Instant, Long> {
 	override fun decode(databaseValue: Long) = Instant.fromEpochMilliseconds(databaseValue)

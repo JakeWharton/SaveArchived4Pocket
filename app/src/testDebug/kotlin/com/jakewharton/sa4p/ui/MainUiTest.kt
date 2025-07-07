@@ -10,8 +10,8 @@ import com.jakewharton.sa4p.db.Urls
 import com.jakewharton.sa4p.presenter.Authenticated
 import com.jakewharton.sa4p.presenter.MainModel
 import com.jakewharton.sa4p.presenter.Unauthenticated
+import kotlin.time.Instant
 import kotlinx.collections.immutable.persistentListOf
-import kotlinx.datetime.Instant
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

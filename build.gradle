@@ -41,6 +41,7 @@ subprojects {
 			freeCompilerArgs.addAll([
 				'-progressive', // https://kotlinlang.org/docs/whatsnew13.html#progressive-mode
 				'-Xjvm-default=all',
+				'-opt-in=kotlin.time.ExperimentalTime',
 			])
 		}
 	}

@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.jakewharton.sa4p.db.Pending
 import com.jakewharton.sa4p.db.Urls
+import kotlin.time.Instant
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
-import kotlinx.datetime.Instant
 
 @Composable
 fun PendingUrls(

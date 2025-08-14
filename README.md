@@ -10,6 +10,12 @@ and then performing the archive.
 
 Is it overkill? Yes. But I've done the manual dance over one hundred times and I'm done with it.
 
+## RIP
+
+Mozilla killed Pocket.
+At the time of archiving this repo I have switched to [Readeck](https://readeck.org/) which helpfully gives me an archive button after saving a link.
+Good enough for me!
+
 
 ## Install
 
